@@ -10,8 +10,3 @@ a “Twitter deep fake” dataset was obtained from Kaggle, called TweetFake (ht
 Initial inspection of the original dataset revealed a stark contrast between the quality of RNN generated texts vs the other models which led to all the RNN class data points being removed. The Folder data includes the three original train, validation, and test csv files as well as the outputted csv file which combines all the data and applies all cleaning and preprocessing.
 
 The csv file that includes cleaned up data points was then tokenized before being split back into training, validation, and testing datasets. For tokenization, the built-in Keras tokenizer was used for all trained models. Due to Twitter having a 240-character limit on tweets, including spaces, a max sequence length of 100 tokens was chosen, as a full-length 240 character tweet consisting of only 3 letter words would be 60 tokens long. This scenario likely is an edge case, with a higher number of tokens than typical, signifying that this sequence length could potentially be tuned down. However, the max sequence any tweet could possibly need would be larger, at 120 tokens, with a tweet consisting of 120 single characters followed by spaces.
-
-## Approach 1: Word Embedding
-
-
-To resolve the problem and achieve the desired results, we first adopted a common encoder-decoder architecture, as depicted in figure above. The Encoder component of this architecture used word embeddings, with the pretrained Global Vectors (GloVe) being used in this project. GloVe encoded each token into a vector representation of a preset dimension of 100, and the resulting vector representations were then passed on to the decoder, which acted as the classifier in this project.
